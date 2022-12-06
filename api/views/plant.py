@@ -48,3 +48,7 @@ class PlantDataViewDetails(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response({"message":"Plant data updated"}, status=status.HTTP_200_OK)
+    def delete(self, request, pk):
+        plant_data = PlantaData.objects.get(id=pk)
+        plant_data.delete()
+        return Response({"message":"Plant data deleted"}, status=status.HTTP_204_NO_CONTENT)
